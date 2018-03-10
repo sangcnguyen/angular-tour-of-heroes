@@ -13,17 +13,15 @@ export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
 
   constructor(
-    private router: Router,
     private heroService: HeroService) {
   }
 
   ngOnInit(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
+    this.getHeroes();
   }
 
-  gotoDetail(hero: Hero): void {
-    const link = ['/detail', hero.id];
-    this.router.navigate(link);
+  getHeroes(): void {
+    this.heroService.getHeroes()
+      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
   }
 }
